@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵隙 - 知识管理移动端应用</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 新的渐变背景，更具科技感 */
+        .hero-gradient {
+            background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #172A45 100%);
+        }
+
+        /* 玻璃效果增强 */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 浮动动画优化 */
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-animation-slow {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-animation-fast {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* 卡片悬停效果增强 */
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(23, 42, 69, 0.3);
+            border-color: #64FFDA;
+        }
+
+        /* 文字渐变更新 */
+        .text-gradient {
+            background: linear-gradient(135deg, #64FFDA, #76E3FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* 新的科技感字体 */
+        body {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* 线条动画 */
+        .line-animation {
+            position: relative;
+        }
+
+        .line-animation::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64FFDA;
+            animation: line-grow 3s infinite alternate;
+        }
+
+        @keyframes line-grow {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* 数据流动画 */
+        .data-flow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-flow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            animation: data-flow 3s infinite linear;
+        }
+
+        @keyframes data-flow {
+            from {
+                left: -100%;
+            }
+
+            to {
+                left: 100%;
+            }
+        }
+
+        /* 脉冲动画 */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* 二维码悬停放大效果 */
+        .qrcode-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .qrcode-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-slate-900 text-white">
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <img src="logo.png" alt="灵隙" class="h-10 w-auto">
+                    <span class="text-2xl font-bold text-white">灵隙</span>
+                </div>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="text-white/90 hover:text-white transition-colors font-medium">首页</a>
+                    <a href="#about" class="text-white/90 hover:text-white transition-colors font-medium">关于</a>
+                    <a href="#features" class="text-white/90 hover:text-white transition-colors font-medium">功能</a>
+                    <a href="#download" class="text-white/90 hover:text-white transition-colors font-medium">下载</a>
+                </div>
+                <div class="lg:hidden">
+                    <i class="fas fa-bars text-white text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="text-white space-y-8">
+                    <div class="space-y-4">
+                        <h1 class="text-5xl lg:text-7xl font-bold leading-tight line-animation">
+                            知识管理
+                            <span class="block text-cyan-300">新体验</span>
+                        </h1>
+                        <p class="text-xl lg:text-2xl text-cyan-100 leading-relaxed max-w-lg">
+                            让碎片化知识有序沉淀，构建您的专属知识体系
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="https://apps.apple.com/cn/app/%E7%81%B5%E9%9A%99/id6746673147" target="_blank"
+                            class="glass-effect px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center group">
+                            <i class="fab fa-apple text-2xl mr-3 group-hover:scale-110 transition-transform"></i>
+                            <div class="text-left">
+                                <div class="text-sm opacity-80">下载自</div>
+                                <div class="text-lg">App Store</div>
+                            </div>
+                        </a>
+                        <button
+                            class="glass-effect px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center cursor-not-allowed opacity-60">
+                            <i class="fab fa-google-play text-2xl mr-3"></i>
+                            <div class="text-left">
+                                <div class="text-sm opacity-80">尽请期待</div>
+                                <div class="text-lg">Google Play</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <div class="relative">
+                        <!-- 主要卡片 -->
+                        <div
+                            class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 shadow-2xl floating-animation border border-white/20 max-w-md w-full">
+                            <div class="text-center text-white space-y-6">
+                                <div
+                                    class="w-16 h-16 hero-gradient rounded-2xl flex items-center justify-center mx-auto">
+                                    <i class="fas fa-lightbulb text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold">智能知识采集</h3>
+                                <div class="space-y-3 text-sm inline-block text-left">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check-circle text-cyan-300"></i>
+                                        <span>多格式内容支持</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check-circle text-cyan-300"></i>
+                                        <span>AI智能分类</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check-circle text-cyan-300"></i>
+                                        <span>云端同步备份</span>
+                                    </div>
+                                </div>
+
+                                <!-- 数据可视化部分 -->
+                                <div class="mt-8 p-4 bg-slate-800/50 rounded-xl data-flow">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm">知识网络构建</span>
+                                        <span class="text-xs text-cyan-300">75%</span>
+                                    </div>
+                                    <div class="progress-bar"></div>
+                                </div>
+
+                                <!-- 实时统计 -->
+                                <div class="grid grid-cols-3 gap-3 mt-6">
+                                    <div class="p-3 bg-slate-800/30 rounded-lg text-center">
+                                        <div class="text-2xl font-bold text-gradient">2,541</div>
+                                        <div class="text-xs opacity-70">知识库条目</div>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/30 rounded-lg text-center">
+                                        <div class="text-2xl font-bold text-gradient">187</div>
+                                        <div class="text-xs opacity-70">标签分类</div>
+                                    </div>
+                                    <div class="p-3 bg-slate-800/30 rounded-lg text-center pulse">
+                                        <div class="text-2xl font-bold text-gradient">98%</div>
+                                        <div class="text-xs opacity-70">关联准确率</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 浮动小卡片1 -->
+                        <div class="absolute -top-6 -right-6 glass-effect p-4 rounded-xl floating-animation-fast w-36">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-check text-green-400"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs opacity-70">数据同步</div>
+                                    <div class="text-sm font-medium">已完成</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 浮动小卡片2 -->
+                        <div
+                            class="absolute -bottom-4 -left-4 glass-effect p-4 rounded-xl floating-animation-slow w-40">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-brain text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs opacity-70">AI分析</div>
+                                    <div class="text-sm font-medium">进行中</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心价值 -->
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+                    为什么选择<span class="text-gradient">灵隙</span>
+                </h2>
+                <p class="text-xl text-cyan-300 max-w-3xl mx-auto">
+                    专为现代知识工作者设计的智能知识管理平台
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 rounded-3xl p-8 card-hover border border-gray-700">
+                    <div class="w-20 h-20 hero-gradient rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">智能采集</h3>
+                    <p class="text-cyan-300 leading-relaxed text-lg">
+                        支持文字、图片、语音、链接等多种形式，随时随地记录灵感与想法，让知识采集变得简单高效。
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 rounded-3xl p-8 card-hover border border-gray-700">
+                    <div class="w-20 h-20 hero-gradient rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-network-wired text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">知识关联</h3>
+                    <p class="text-cyan-300 leading-relaxed text-lg">
+                        AI智能分析知识内容，自动建立关联关系，让您的知识库形成有机的知识网络。
+                    </p>
+                </div>
+
+                <div class="bg-slate-800 rounded-3xl p-8 card-hover border border-gray-700">
+                    <div class="w-20 h-20 hero-gradient rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">高效检索</h3>
+                    <p class="text-cyan-300 leading-relaxed text-lg">
+                        强大的语义搜索功能，支持全文检索、标签筛选，让知识触手可及，提升工作效率。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于模块 - 已更新 -->
+    <section id="about" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+                    关于<span class="text-gradient">灵隙</span>
+                </h2>
+                <p class="text-xl text-cyan-300 max-w-3xl mx-auto">
+                    独立开发的智能知识管理解决方案
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-cyan-300 leading-relaxed mb-8">
+                        灵隙是独立开发者的作品，由开发者刘晓博独立设计与开发。致力于帮助用户将碎片化知识转化为系统化的知识资产，提升学习和工作效率。
+                    </p>
+
+                    <div class="space-y-4 mt-10">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-10 h-10 hero-gradient rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-code text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">独立开发</h4>
+                                <p class="text-cyan-300">专注知识管理领域的独立开发者作品</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-10 h-10 hero-gradient rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-1">联系我们</h4>
+                                <p class="text-cyan-300">liuxiaobopro@qq.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h3 class="text-2xl lg:text-3xl font-bold text-white mb-8">关注我们的公众号</h3>
+                    <p class="text-cyan-300 leading-relaxed mb-10">
+                        获取最新产品动态和知识管理干货
+                    </p>
+
+                    <div class="qrcode-hover glass-effect p-6 rounded-2xl inline-block">
+                        <div class="w-48 h-48 bg-white/10 rounded-xl flex items-center justify-center mb-4">
+                            <img src="qr_gzh.jpg" alt="公众号二维码" class="w-40 h-40 rounded-lg">
+                        </div>
+                        <div class="text-white font-medium">灵隙知识管理</div>
+                        <div class="text-cyan-300 text-sm mt-1">ID: lssdev</div>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-2 gap-6">
+                        <div class="bg-slate-800/50 p-6 rounded-xl card-hover">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i class="fas fa-newspaper text-cyan-300 text-xl"></i>
+                                <h4 class="text-xl font-semibold text-white">产品更新</h4>
+                            </div>
+                            <p class="text-cyan-300 text-sm">每周推送最新功能和优化内容</p>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-6 rounded-xl card-hover">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <i class="fas fa-book-open text-cyan-300 text-xl"></i>
+                                <h4 class="text-xl font-semibold text-white">知识干货</h4>
+                            </div>
+                            <p class="text-cyan-300 text-sm">分享高效知识管理方法和技巧</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能展示 -->
+    <section id="features" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+                            构建您的<span class="text-gradient">知识体系</span>
+                        </h2>
+                        <p class="text-xl text-cyan-300 leading-relaxed">
+                            无论是工作、学习还是生活，灵隙都能帮助您建立个性化的知识管理系统，让碎片化信息转化为有价值的知识资产。
+                        </p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-2">隐私保护</h4>
+                                <p class="text-cyan-300">端到端加密，确保您的知识数据安全可靠</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-cloud text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-2">云端同步</h4>
+                                <p class="text-cyan-300">多设备实时同步，随时随地访问您的知识库</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div
+                                class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-magic text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-semibold text-white mb-2">智能推荐</h4>
+                                <p class="text-cyan-300">基于您的使用习惯，智能推荐相关知识内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative">
+                    <div class="bg-slate-800 rounded-3xl p-8 shadow-2xl border border-gray-700">
+                        <div class="space-y-6">
+                            <div class="text-center">
+                                <div
+                                    class="w-20 h-20 hero-gradient rounded-2xl flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-users text-white text-3xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-2">用户信赖之选</h3>
+                                <p class="text-cyan-300">超过10万用户选择灵隙管理知识</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center p-4 bg-slate-700 rounded-xl">
+                                    <div class="text-2xl font-bold text-gradient mb-1">98%</div>
+                                    <div class="text-sm text-cyan-300">用户满意度</div>
+                                </div>
+                                <div class="text-center p-4 bg-slate-700 rounded-xl">
+                                    <div class="text-2xl font-bold text-gradient mb-1">24/7</div>
+                                    <div class="text-sm text-cyan-300">云端服务</div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="text-cyan-300">简洁直观的操作界面</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="text-cyan-300">强大的知识关联功能</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <span class="text-cyan-300">安全可靠的数据保护</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -left-6 glass-effect p-6 rounded-2xl">
+                        <div class="text-center text-white">
+                            <div class="text-3xl font-bold">10万+</div>
+                            <div class="text-sm opacity-80">活跃用户</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 下载区域 -->
+    <section id="download" class="py-24 hero-gradient relative overflow-hidden">
+        <div class="absolute inset-0">
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl">
+            </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">
+                立即开始您的<span class="text-cyan-300">知识管理之旅</span>
+            </h2>
+            <p class="text-xl text-cyan-100 mb-12 max-w-2xl mx-auto">
+                下载灵隙，让知识管理变得简单高效，构建属于您的专属知识库
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+                <a href="https://apps.apple.com/cn/app/%E7%81%B5%E9%9A%99/id6746673147" target="_blank"
+                    class="glass-effect px-12 py-6 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center group">
+                    <i class="fab fa-apple text-3xl mr-4 group-hover:scale-110 transition-transform"></i>
+                    <div class="text-left">
+                        <div class="text-sm opacity-80">下载自</div>
+                        <div class="text-xl">App Store</div>
+                    </div>
+                </a>
+                <button
+                    class="glass-effect px-12 py-6 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center cursor-not-allowed opacity-60">
+                    <i class="fab fa-google-play text-3xl mr-4"></i>
+                    <div class="text-left">
+                        <div class="text-sm opacity-80">尽请期待</div>
+                        <div class="text-xl">Google Play</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-slate-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <img src="logo.png" alt="灵隙" class="h-10 w-auto">
+                        <span class="text-2xl font-bold">灵隙</span>
+                    </div>
+                    <p class="text-cyan-300 mb-6 max-w-md text-lg">
+                        让知识有序沉淀，构建专属知识体系。灵隙致力于为用户提供最优质的知识管理体验。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-weixin text-white text-xl"></i>
+                        </a>
+                        <a href="#"
+                            class="w-12 h-12 hero-gradient rounded-xl flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-weibo text-white text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">产品</h3>
+                    <ul class="space-y-3 text-cyan-300">
+                        <li><a href="#" class="hover:text-white transition-colors">功能介绍</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">更新日志</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">使用指南</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">API文档</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">支持</h3>
+                    <ul class="space-y-3 text-cyan-300">
+                        <li><a href="#" class="hover:text-white transition-colors">帮助中心</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">隐私政策</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">服务条款</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-cyan-300">
+                <p>&copy; 2025 刘晓博. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            const navLinks = navbar.querySelectorAll('a');
+            const logoText = navbar.querySelector('.text-2xl');
+            const menuIcon = navbar.querySelector('.fas.fa-bars');
+
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+
+                // 改变文字颜色为深色
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white/90', 'hover:text-white');
+                    link.classList.add('text-gray-700', 'hover:text-gray-900');
+                });
+                logoText.classList.remove('text-white');
+                logoText.classList.add('text-gray-900');
+                menuIcon.classList.remove('text-white');
+                menuIcon.classList.add('text-gray-700');
+            } else {
+                navbar.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
+
+                // 恢复文字颜色为白色
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-700', 'hover:text-gray-900');
+                    link.classList.add('text-white/90', 'hover:text-white');
+                });
+                logoText.classList.remove('text-gray-900');
+                logoText.classList.add('text-white');
+                menuIcon.classList.remove('text-gray-700');
+                menuIcon.classList.add('text-white');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
